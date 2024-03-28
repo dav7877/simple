@@ -1,146 +1,248 @@
+
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CodePen - Simple Admin Dashboard - Bootstrap</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css'><link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    
+<style>
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
 
+.card {
+  width: 49%;
+  background-color: #E0AED0;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+	background:#E0AED0;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  color: #494E65;
+  margin-bottom: 5px;}
+label {
+	color:#494E65;}
+h2{
+	color:#4C515A;}
+input {
+	border-style: hidden;
+	border: 0px hidden #000000;
+	color:#494E65;
+	background: #000000;}
+button {
+	margin:10px 10px 10px 10px;}
+	
+button:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
+	
+</style>
+    
+    
+        <script>
+        function fetchData(url) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    updateForm(data);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function updateForm(data) {
+          document.getElementById('bname').value = data.bname;
+     document.getElementById('username').value = data.username;
+              document.getElementById('email').value = data.email;
+             document.getElementById('password').value = data.password;
+            document.getElementById('address').value = data.address;
+            document.getElementById('zip').value = data.zip;
+            document.getElementById('city').value = data.city;
+            document.getElementById('state').value = data.state;
+          document.getElementById('country').value = data.country;
+            document.getElementById('bemail').value = data.bemail;
+            document.getElementById('number').value = data.number;
+            // Add more fields as needed
+        }
+    </script>
+    
+    
+    
+    
 </head>
-<body>
-<!-- partial:index.partial.html -->
-<!-- overlay -->
-<div id="sidebar-overlay" class="overlay w-100 vh-100 position-fixed d-none"></div>
+<body style="background:#FFE5E5">
+   <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+            <h3>F<span>enixjam</span></h3>
+        </div>
+        
+        <div class="side-content">
+            <div class="profile">
+        <div class="profile-img bg-img" style="background-image:url(download.png)"></div>
+                <h4>Ⱳ360Info</h4>
+                <small>Seo Agency</small>
+            </div>
 
-<!-- sidebar -->
-<div class="col-md-3 col-lg-2 px-0 position-fixed h-100 bg-white shadow-sm sidebar" id="sidebar">
-  <h1 class="bi bi-bootstrap text-primary d-flex my-4 justify-content-center"></h1>
-  <div class="list-group rounded-0">
-    <a href="#" class="list-group-item list-group-item-action active border-0 d-flex align-items-center">
-      <span class="bi bi-border-all"></span>
-      <span class="ml-2">Dashboard</span>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action border-0 align-items-center">
-      <span class="bi bi-box"></span>
-      <span class="ml-2">Products</span>
-    </a>
+            <div class="side-menu">
+                <ul><li>
+  <a href="https://archive.org/download/fav-fenixjam/Dashboard.html">
+                        <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a></li><li>
+        <a href="https://archive.org/download/fav-fenixjam/Project.html" class="active">
+                    <span class="las la-tasks"></span>
+                            <small>Project</small>
+                            </a></li><li>
+                       <a href="https://archive.org/download/fav-fenixjam/Meta.html">
+            <span class="las la-clipboard-list"></span>
+                            <small>Meta data</small>
+                        </a></li><li>
+                       <a href="https://archive.org/download/fav-fenixjam/Add.html">
+            <span class="las la-save"></span>
+                  <small>Add work</small>
+                        </a></li><li>
+               <a href="https://archive.org/download/fav-fenixjam/Chat.html">
+   <span class="las la-comment-dots"></span>
+                            <small>Chatbox</small>
+                        </a></li>
+                    <li>
+                       <a href="https://archive.org/download/fav-fenixjam/Developer.html">
+                    <span class="las la-code"></span>
+                            <small>Developer</small>
+                        </a></li>
 
-    <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#sale-collapse">
-      <div>
-        <span class="bi bi-cart-dash"></span>
-        <span class="ml-2">Sale</span>
-      </div>
-      <span class="bi bi-chevron-down small"></span>
-    </button>
-    <div class="collapse" id="sale-collapse" data-parent="#sidebar">
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Customers</a>
-        <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Sales</a>
-      </div>
-    </div>
+                </ul>
+            </div></div></div>
+    
+    <div class="main-content">
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                
+                <div class="header-menu">
+                    <label for="">
+                        <span class="las la-search"></span>
+                    </label>
+                    
+                    <div class="notify-icon">
+                <span class="las la-envelope"></span>
+                   <span class="notify">4</span>
+                    </div>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-bell"></span>
+                        <span class="notify">3</span>
+                    </div>
+                    
+                    <div class="user">
+                        <div class="bg-img" style="background-image: url(download.png)"></div>
+                        
+               <span class="las la-power-off"></span>
+                        <span>Logout</span>
+                    </div></div></div>
+        </header>       
+        <main> 
+            <div class="page-header">
+                <h1>Dashboard</h1>
+     <small>Home / Project</small>
+            </div>
+           <!-- drop-down -->
+           	         
+            <!-- end -->
+                       
+            
+           <!-- form -->
+           	<div class="container">
+  <div class="card">
+    <h2>Basic details</h2>
+    <form class="form-container">
+      <label for="bname">Business name</label>
+      <input type="text" id="bname" >
+      <label for="username">Username</label>
+     <input type="text" id="username">
+     <label for="email">Email</label>
+     <input type="text" id="email" >
+ 	<label for="password">Password</label>
+     <input type="text" id="password">
+  </div>
 
-    <button class="list-group-item list-group-item-action border-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#purchase-collapse">
-      <div>
-        <span class="bi bi-cart-plus"></span>
-        <span class="ml-2">Purchase</span>
-      </div>
-      <span class="bi bi-chevron-down small"></span>
-    </button>
-    <div class="collapse" id="purchase-collapse" data-parent="#sidebar">
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Sellers</a>
-        <a href="#" class="list-group-item list-group-item-action border-0 pl-5">Purchases</a>
-      </div>
-    </div>
+  <div class="card">
+    <h2>Additional details</h2><br>
+    <form class="form-container">
+      <label for="name2">Address</label>
+      <input type="text" id="address">
+      <label for="email2">Zip code</label>
+      <input type="text" id="zip">
+        <label for="email2">City</label>
+      <input type="email" id="city" >
+      <label for="email2">State</label>
+      <input type="email" id="state">
+      <label for="country">Country</label>
+      <input type="text" id="country" >
+    <label for="email">bemail</label>
+      <input type="email" id="bemail">
+      <label for="number">number</label>
+      <input type="text" id="number" >
+    </form>
   </div>
 </div>
+           
+           
+           
+           
+           
+           
+           
+ <!-- end form-->
+<!-- button-->
+	<div class="add">
+	<button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url1.json')">1</button>
+        <button type="button" onclick="fetchData('https://ia801403.us.archive.org/3/items/apps_20220911/url2.json')">2</button>
+        <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url3.json')">3</button>
+        <button type="button" onclick="fetchData('https://ia801403.us.archive.org/3/items/apps_20220911/url4.json')">4</button>
+        <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url5.json')">5</button>
+        <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url6.json')">6</button>
+           <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url7.json')">7</button>
+              <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url8.json')">8</button>
+                 <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url9.json')">9</button>
+                 <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url10.json')">10</button>
+                  <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url11.json')">11</button>
+                <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url12.json')">12</button>
+               <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url13.json')">13</button>
+                <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url14.json')">14</button>
+              <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url15.json')">15</button>
+              <button type="button" onclick="fetchData('https://ia601403.us.archive.org/3/items/apps_20220911/url16.json')">16</button>
+              
+        </div>
+        
+        
+        
+        
+<!-- end -- button-->
+	
+<!-- Add more options as needed -->
+</select><br><br></form>
+	  
 
-<div class="col-md-9 col-lg-10 ml-md-auto px-0 ms-md-auto">
-  <!-- top nav -->
-  <nav class="w-100 d-flex px-4 py-2 mb-4 shadow-sm">
-    <!-- close sidebar -->
-    <button class="btn py-0 d-lg-none" id="open-sidebar">
-      <span class="bi bi-list text-primary h3"></span>
-    </button>
-    <div class="dropdown ml-auto">
-      <button class="btn py-0 d-flex align-items-center" id="logout-dropdown" data-toggle="dropdown" aria-expanded="false">
-        <span class="bi bi-person text-primary h4"></span>
-        <span class="bi bi-chevron-down ml-1 mb-2 small"></span>
-      </button>
-      <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm" aria-labelledby="logout-dropdown">
-        <a class="dropdown-item" href="#">Logout</a>
-        <a class="dropdown-item" href="#">Settings</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- main content -->
-  <main class="p-4 min-vh-100">
-    <section class="row">
-      <div class="col-md-6 col-lg-4">
-        <!-- card -->
-        <article class="p-4 rounded shadow-sm border-left
-       mb-4">
-          <a href="#" class="d-flex align-items-center">
-            <span class="bi bi-box h5"></span>
-            <h5 class="ml-2">Products</h5>
-          </a>
-        </article>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <article class="p-4 rounded shadow-sm border-left mb-4">
-          <a href="#" class="d-flex align-items-center">
-            <span class="bi bi-person h5"></span>
-            <h5 class="ml-2">Customers</h5>
-          </a>
-        </article>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <article class="p-4 rounded shadow-sm border-left mb-4">
-          <a href="#" class="d-flex align-items-center">
-            <span class="bi bi-person-check h5"></span>
-            <h5 class="ml-2">Sellers</h5>
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <div class="jumbotron jumbotron-fluid rounded bg-white border-0 shadow-sm border-left px-4">
-    	
-
-      
- 	
-
-
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT1Rs4wpr5TtS54v69xJyew7DUHHQ5FCSTCBIJwViO02TCK7kfw7b1K9phs_MVQsTxoIz0cmlYD_h0e/pubhtml?gid=76604118&amp;single=true&amp;widet=true&amp;headers=false&chrome=false&range=A2:M35" height="600" width="100%"></iframe>
-
-    
-    
-    
-    
-    
-   
-   
-   
- 
-    
-    
-    
-    
-    
-    
-      <div class="container">
-      	      
-        <h1 class="display-4 mb-2 text-primary">Simple</h1>
-        <p class="lead text-muted">Simple Admin Dashboard with Bootstrap.</p>
-      </div>
-    </div>
-  </main>
-</div>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js'></script><script  src="./script.js"></script>
-
+          
+<!-- end form -->
+</div></div></div></main></div>
 </body>
-</html>
+              </html>
